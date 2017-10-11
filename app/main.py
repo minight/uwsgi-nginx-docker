@@ -1,4 +1,12 @@
-def application(env, start_response):
-    start_response('200 OK', [('Content-Type', 'text/html')])
-    return [b"Hello World from a default Nginx uWSGI Python 3.6 app in a\
-            Docker container (default)"]
+from flask import Flask
+app = Flask(__name__)
+
+
+@app.route("/")
+def hello():
+    return "Hello World from Flask in a uWSGI Nginx Docker container with \
+     Python 3.6 (default)"
+
+if __name__ == "__main__":
+    app.run(host='0.0.0.0', debug=True, port=80)
+
